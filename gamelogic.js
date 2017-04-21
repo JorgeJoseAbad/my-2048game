@@ -10,8 +10,8 @@
 //si el grid esta lleno se acaba
 $(document).ready(function(){
 
-  game = new Game2048(); //quito el var para que sea una variable de visibilidad global
-  game._renderBoard();   //y se pueda ver desde la consola.
+  //game = new Game2048(); //quito el var para que sea una variable de visibilidad global
+  //game._renderBoard();   //y se pueda ver desde la consola.
 
 });
 
