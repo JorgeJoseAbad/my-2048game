@@ -176,13 +176,13 @@ Game2048.prototype._moveDown = function () {
 };
 
 //esta funcion me la invento
-//Game2048.prototype._isGameFinished() = function(){
-//  return (this.won || this.lost);
+Game2048.prototype._isGameFinished = function(){
+  return (this.won || this.lost);
 
-//};
+};
 
 Game2048.prototype.move = function (direction) {
-  if (!this._isGameLost()) { //ojo, he cambiado _isGameFinished por _isGameLost
+  if (!this._isGameFinished()) { //ojo, he cambiado _isGameFinished por _isGameLost
     switch (direction) {     // porque _isGameFinished no esta definido
       case "up":    boardChanged = this._moveUp();    break;
       case "down":  boardChanged = this._moveDown();  break;
@@ -211,6 +211,10 @@ Game2048.prototype._updateScore = function(value) {
   }
 };
 
+//añado esta funcion para poder dar a aplication.js un game.lose
+Game2048.prototype.lose = function(){
+  return this.lost;
+};
 
 Game2048.prototype.win = function () {
   return this.won;

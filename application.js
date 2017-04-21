@@ -45,6 +45,7 @@ function gameStatus () {
     document.getElementById("game-over").classList = "show-won";
   } else if (game.lose()) {
     document.getElementById("game-over").classList = "show-lost";
+    document.getElementById("game-over").innerHTML='You Lost, stupid!!';
   }
 }
 
