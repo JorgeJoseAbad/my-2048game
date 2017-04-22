@@ -54,6 +54,16 @@ body {
   text-shadow: 1px 1px 3px #000;
 }
 
+.show-won{
+  background-color: green;
+  width: 150px;
+  height: 150px;
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  transform: translate(150px,-400px);
+}
+
 .show-lost{
   background-color: red;
   width: 150px;

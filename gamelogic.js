@@ -12,7 +12,7 @@ $(document).ready(function(){
 
   //game = new Game2048(); //quito el var para que sea una variable de visibilidad global
   //game._renderBoard();   //y se pueda ver desde la consola.
-
+               //posteriormente comento al crear el juego desde application.js
 });
 
 
@@ -81,6 +81,8 @@ Game2048.prototype._moveLeft = function () {
   var that = this;
   var boardChanged = false;
 
+  ion.sound.play("snap");
+
   this.board.forEach (function (row) {
     var newRow = row.filter(function (i) {
       return i !== null;
@@ -88,11 +90,15 @@ Game2048.prototype._moveLeft = function () {
 
     for(i = 0; i < newRow.length - 1; i++) {
       if (newRow[i+1] === newRow[i]) {
+        ion.sound.play("tap");
         newRow[i]   = newRow[i] * 2;
         newRow[i+1] = null;
 
         that._updateScore(newRow[i]);
       }
+
+      if (newRow.length !== row.length)  boardChanged = true; //cambio esto aqui
+
     }
 
     var merged = newRow.filter(function (i) {
@@ -103,8 +109,8 @@ Game2048.prototype._moveLeft = function () {
       merged.push(null);
     }
 
-    if (newRow.length !== row.length)
-      boardChanged = true;
+    //if (newRow.length !== row.length)
+    //  boardChanged = true;
 
     newBoard.push(merged);
   });
@@ -118,6 +124,8 @@ Game2048.prototype._moveRight = function () {
   var newBoard = [];
   var that = this;
   var boardChanged = false;
+
+  ion.sound.play("snap");
 
   this.board.forEach (function (row) {
     var newRow = row.filter(function (i) {

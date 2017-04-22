@@ -3,7 +3,10 @@ var game;
 window.onload = function () {
   game = new Game2048();
   renderTiles();
+  loadSounds ();
 };
+
+
 
 function renderTiles () {
   game.board.forEach(function(row, rowIndex){
@@ -43,9 +46,10 @@ function updateScore () {
 function gameStatus () {
   if (game.win()) {
     document.getElementById("game-over").classList = "show-won";
+    document.getElementById("game-over").innerHTML='You have win!!';
   } else if (game.lose()) {
     document.getElementById("game-over").classList = "show-lost";
-    document.getElementById("game-over").innerHTML='You Lost, stupid!!';
+    document.getElementById("game-over").innerHTML='You have lost, sorry!!';
   }
 }
 
@@ -66,6 +70,15 @@ function moveListeners (event) {
   renderTiles();
   updateScore();
   gameStatus();
+}
+
+function loadSounds () {
+  ion.sound({
+    sounds: [{name: "snap"}, {name: "tap"}],
+    path: "/lib/ion.sound-3.0.7/sounds/",
+    preload: true,
+    volume: 1.0
+  });
 }
 
 document.addEventListener("keydown", moveListeners);
