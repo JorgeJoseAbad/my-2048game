@@ -1,18 +1,9 @@
-//mover las fichas en grid de 4.4
-//ver is ha habido movimiento
 
-//cada ficha debe
-//comprobar que hay sitio libre
-//comprobar el numero hacia el que se desplaza
-//coprobar que no estamos ya al limite
-
-//al juntrse dos cada una tiene que sabe si desaparece o se multiplica
-//si el grid esta lleno se acaba
 $(document).ready(function(){
 
-  //game = new Game2048(); //quito el var para que sea una variable de visibilidad global
-  //game._renderBoard();   //y se pueda ver desde la consola.
-               //posteriormente comento al crear el juego desde application.js
+  //game = new Game2048(); //Remove var to be a global visibility variable
+  //game._renderBoard();   //to see from console, from application.js
+
 });
 
 
@@ -205,10 +196,6 @@ Game2048.prototype.move = function (direction) {
   }
 };
 
-//Game2048.prototype._renderBoard = function () {
-//  this.board.forEach(function(row){ console.log(row); });
-//  console.log('Score: ' + this.score);
-//};
 
 
 Game2048.prototype._updateScore = function(value) {
@@ -229,21 +216,6 @@ Game2048.prototype.win = function () {
 };
 
 
-//Game2048.prototype.move = function (direction) {
-//  if (!this._gameFinished()) {
-//    switch (direction) {
-//      case "up":    boardChanged = this._moveUp();    break;
-//      case "down":  boardChanged = this._moveDown();  break;
-//      case "left":  boardChanged = this._moveLeft();  break;
-//      case "right": boardChanged = this._moveRight(); break;
-//    }
-//
-//    if (boardChanged) {
-//      this._generateTile();
-//      this._isGameLost();
-//    }
-//  }
-//};
 
 Game2048.prototype._isGameLost = function () {
   if (this._getAvailablePosition())
@@ -277,7 +249,3 @@ Game2048.prototype._isGameLost = function () {
 
   this.lost = isLost;
 };
-
-
-/*OJO a esto!!! en el document ready solo la declarcion de jueto y el render de la placa*/
-/*tengo que informarme mas de esto*/
