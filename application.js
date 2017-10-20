@@ -75,7 +75,7 @@ function moveListeners (event) {
 function loadSounds () {
   ion.sound({
     sounds: [{name: "snap"}, {name: "tap"}],
-    path: "/gameLogic/lib/ion.sound-3.0.7/sounds/",
+    path: "/my-2048game/lib/ion.sound-3.0.7/sounds/",
     preload: true,
     volume: 1.0
   });
