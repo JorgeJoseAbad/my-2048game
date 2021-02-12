@@ -47,11 +47,14 @@ function gameStatus () {
   if (game.win()) {
     document.getElementById("game-over").classList = "show-won";
     document.getElementById("game-over").innerHTML="You´ve won!!";
+    setTimeout(function(){
+      document.getElementById("game-over").innerHTML = game.getMessage();
+    },1000);
   } else if (game.lose()) {
     document.getElementById("game-over").classList = "show-lost";
     document.getElementById("game-over").innerHTML='You´ve lost, sorry!!';
     setTimeout(function(){
-      document.getElementById("game-over").innerHTML=game.getMessage();
+      document.getElementById("game-over").innerHTML = game.getMessage();
     },1000);
   }
 }

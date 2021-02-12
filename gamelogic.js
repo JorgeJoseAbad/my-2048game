@@ -197,7 +197,7 @@ Game2048.prototype.move = function (direction) {
 Game2048.prototype._updateScore = function(value) {
   this.score += value;
   if (this.score === 2048) {
-    this.message = "Puntuación justa!!"
+    this.message = "Fair score!!"
     this.won = true;
   }
 };
@@ -245,14 +245,14 @@ Game2048.prototype._isGamePlayable = function () {
   });
 
   this.lost = isLost;
-  if (this.lost === true){this.message = "No hay espacio!!"}
+  if (this.lost === true){this.message = "There's no space!!"}
 };
 
 Game2048.prototype._isGameWinnedOrLoosed = function(){
-  if (this.score===2048){
+  if (this.score === 2048){
     this.won = true;
-  } else if (this.score>=2048){
-    this.message = "Te has pasao!!";
+  } else if (this.score >= 2048){
+    this.message = "You missed the points!!";
     this.lost = true;
   }
 }
