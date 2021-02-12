@@ -19,6 +19,7 @@ $(document).ready(function(){
     this.score  = 0;
     this.won   = false;
     this.lost  = false;
+    this.message = "";
     this._generateTile();
     this._generateTile();
 
@@ -196,6 +197,7 @@ Game2048.prototype.move = function (direction) {
 Game2048.prototype._updateScore = function(value) {
   this.score += value;
   if (this.score === 2048) {
+    this.message = "Puntuación justa!!"
     this.won = true;
   }
 };
@@ -243,12 +245,18 @@ Game2048.prototype._isGamePlayable = function () {
   });
 
   this.lost = isLost;
+  if (this.lost === true){this.message = "No hay espacio!!"}
 };
 
 Game2048.prototype._isGameWinnedOrLoosed = function(){
   if (this.score===2048){
     this.won = true;
   } else if (this.score>=2048){
+    this.message = "Te has pasao!!";
     this.lost = true;
   }
+}
+
+Game2048.prototype.getMessage = function(){
+  return this.message;
 }
