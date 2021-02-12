@@ -12,8 +12,13 @@ body {
   padding: 0;
 }
 
+#info{
+  clear: both;
+  height: 55px;
+}
 
 #score{
+  width: 200px;
   font-size: 20px;
   font-style: normal;
   font-weight: bold;
@@ -22,10 +27,32 @@ body {
   border-radius: 4px;
   padding: 10px;
   margin-bottom: 10px;
-  width: 200px;
-
 
 }
+
+.show-won{
+  width: 300px;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: center;
+  background-color: #92efb4;
+  transform: translate(300px,-50px);
+}
+
+.show-lost{
+  width: 300px;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: center;
+  background-color: #f13131;
+  transform: translate(300px,-50px);
+}
+
+
 
 #game-board {
   background: #3582b8;
@@ -72,26 +99,6 @@ body {
   position: absolute;
   text-align: center;
   text-shadow: 1px 1px 3px #000;
-}
-
-.show-won{
-  background-color: green;
-  width: 150px;
-  height: 150px;
-  font-size: 30px;
-  font-weight: bolder;
-  text-align: center;
-  transform: translate(150px,-400px);
-}
-
-.show-lost{
-  background-color: red;
-  width: 150px;
-  height: 150px;
-  font-size: 30px;
-  font-weight: bolder;
-  text-align: center;
-  transform: translate(150px,-400px);
 }
 
 

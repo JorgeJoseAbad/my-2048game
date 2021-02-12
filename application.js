@@ -46,10 +46,10 @@ function updateScore () {
 function gameStatus () {
   if (game.win()) {
     document.getElementById("game-over").classList = "show-won";
-    document.getElementById("game-over").innerHTML='You have win!!';
+    document.getElementById("game-over").innerHTML="You´ve won!!";
   } else if (game.lose()) {
     document.getElementById("game-over").classList = "show-lost";
-    document.getElementById("game-over").innerHTML='You have lost, sorry!!';
+    document.getElementById("game-over").innerHTML='You´ve lost, sorry!!';
   }
 }
 

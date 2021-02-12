@@ -26,8 +26,6 @@ $(document).ready(function(){
 
 
 
-//debugger
-
   Game2048.prototype._generateTile = function () {
     var initialValue = (Math.random() < 0.8) ? 2 : 4;
     var emptyTile = this._getAvailablePosition();
@@ -56,13 +54,10 @@ Game2048.prototype._getAvailablePosition = function () {
 
 
 
-
-
 Game2048.prototype._renderBoard = function () {
   this.board.forEach(function(row){ console.log(row); });
   console.log('Score: ' + this.score);
 };
-
 
 
 
@@ -123,30 +118,30 @@ Game2048.prototype._moveRight = function () {
       return i !== null;
     });
 
-for (i=newRow.length - 1; i>0; i--) {
-  if (newRow[i-1] === newRow[i]) {
-    newRow[i]   = newRow[i] * 2;
-    newRow[i-1] = null;
+  for (i=newRow.length - 1; i>0; i--) {
+    if (newRow[i-1] === newRow[i]) {
+      newRow[i]   = newRow[i] * 2;
+      newRow[i-1] = null;
 
-    that._updateScore(newRow[i]);
+      that._updateScore(newRow[i]);
+    }
+
+    if (newRow.length !== row.length) boardChanged = true;
   }
 
-  if (newRow.length !== row.length) boardChanged = true;
-}
+  var merged = newRow.filter(function (i) {
+    return i !== null;
+  });
 
-var merged = newRow.filter(function (i) {
-  return i !== null;
-});
+  while(merged.length < 4) {
+    merged.unshift(null);
+  }
 
-while(merged.length < 4) {
-  merged.unshift(null);
-}
-
-newBoard.push(merged);
+  newBoard.push(merged);
 });
 
 this.board = newBoard;
-return boardChanged;
+  return boardChanged;
 };
 
 
@@ -192,6 +187,7 @@ Game2048.prototype.move = function (direction) {
     if (boardChanged) {
       this._generateTile();
       this._isGameLost();
+      this._isGameWinned(); //febrero 2021 añado esto
     }
   }
 };
@@ -218,13 +214,15 @@ Game2048.prototype.win = function () {
 
 
 Game2048.prototype._isGameLost = function () {
+
   if (this._getAvailablePosition())
     return;
 
   var that   = this;
   var isLost = true;
-
-  this.board.forEach(function (row, rowIndex) {
+  /*Comprueba, si no hay AvailablePosition libre,
+  si dos casillas adyaccentes son iguales y se puede mover */
+  that.board.forEach(function (row, rowIndex) {
     row.forEach(function (cell, cellIndex) {
       var current = that.board[rowIndex][cellIndex];
       var top, bottom, left, right;
@@ -249,3 +247,11 @@ Game2048.prototype._isGameLost = function () {
 
   this.lost = isLost;
 };
+
+Game2048.prototype._isGameWinned = function(){
+  if (this.score==2048){
+    this.won = true;
+  } else if (this.score>=2048){
+    this.lost = true;
+  }
+}
