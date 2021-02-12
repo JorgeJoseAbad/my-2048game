@@ -62,7 +62,6 @@ Game2048.prototype._renderBoard = function () {
 
 
 
-//segunda parte
 Game2048.prototype._moveLeft = function () {
   var newBoard = [];
   var that = this;
@@ -188,7 +187,6 @@ Game2048.prototype.move = function (direction) {
     if (boardChanged) {
       this._generateTile();
       this._isGamePlayable();
-      this._isGameWinnedOrLoosed(); //febrero 2021 añado esto
     }
   }
 };
@@ -196,8 +194,8 @@ Game2048.prototype.move = function (direction) {
 
 Game2048.prototype._updateScore = function(value) {
   this.score += value;
-  if (this.score === 2048) {
-    this.message = "Fair score!!"
+  if (value === 2048) {
+    this.message = "Congratulations!!! ";
     this.won = true;
   }
 };
@@ -245,17 +243,9 @@ Game2048.prototype._isGamePlayable = function () {
   });
 
   this.lost = isLost;
-  if (this.lost === true){this.message = "There's no space!!"}
+  if (this.lost === true){this.message = "No movement possible!!"}
 };
 
-Game2048.prototype._isGameWinnedOrLoosed = function(){
-  if (this.score === 2048){
-    this.won = true;
-  } else if (this.score >= 2048){
-    this.message = "You missed the points!!";
-    this.lost = true;
-  }
-}
 
 Game2048.prototype.getMessage = function(){
   return this.message;
