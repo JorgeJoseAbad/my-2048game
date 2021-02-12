@@ -169,15 +169,15 @@ Game2048.prototype._moveDown = function () {
   return boardChanged;
 };
 
-//esta funcion me la invento
+
 Game2048.prototype._isGameFinished = function(){
   return (this.won || this.lost);
 
 };
 
 Game2048.prototype.move = function (direction) {
-  if (!this._isGameFinished()) { //ojo, he cambiado _isGameFinished por _isGameLost
-    switch (direction) {     // porque _isGameFinished no esta definido
+  if (!this._isGameFinished()) {
+    switch (direction) {
       case "up":    boardChanged = this._moveUp();    break;
       case "down":  boardChanged = this._moveDown();  break;
       case "left":  boardChanged = this._moveLeft();  break;
@@ -186,23 +186,21 @@ Game2048.prototype.move = function (direction) {
 
     if (boardChanged) {
       this._generateTile();
-      this._isGameLost();
-      this._isGameWinned(); //febrero 2021 añado esto
+      this._isGamePlayable();
+      this._isGameWinnedOrLoosed(); //febrero 2021 añado esto
     }
   }
 };
 
 
-
 Game2048.prototype._updateScore = function(value) {
   this.score += value;
-
-  if (value === 2048) {
+  if (this.score === 2048) {
     this.won = true;
   }
 };
 
-//añado esta funcion para poder dar a aplication.js un game.lose
+
 Game2048.prototype.lose = function(){
   return this.lost;
 };
@@ -212,8 +210,7 @@ Game2048.prototype.win = function () {
 };
 
 
-
-Game2048.prototype._isGameLost = function () {
+Game2048.prototype._isGamePlayable = function () {
 
   if (this._getAvailablePosition())
     return;
@@ -248,8 +245,8 @@ Game2048.prototype._isGameLost = function () {
   this.lost = isLost;
 };
 
-Game2048.prototype._isGameWinned = function(){
-  if (this.score==2048){
+Game2048.prototype._isGameWinnedOrLoosed = function(){
+  if (this.score===2048){
     this.won = true;
   } else if (this.score>=2048){
     this.lost = true;
