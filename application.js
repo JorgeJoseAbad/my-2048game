@@ -1,3 +1,7 @@
+/*
+ Visual (work on the DOM) logic of the game
+*/
+
 var game;
 
 window.onload = function () {

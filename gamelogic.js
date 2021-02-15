@@ -1,10 +1,15 @@
-
+/*
+  Numerical game logic
+*/
+/*
+//(this for console-only game)
 $(document).ready(function(){
 
-  //game = new Game2048(); //Remove var to be a global visibility variable
-  //game._renderBoard();   //to see from console, from application.js
+  game = new Game2048(); //Remove var to be a global visibility variable
+  game._renderBoard();   //to see from console, from application.js
 
 });
+*/
 
 
   function Game2048() {
@@ -95,9 +100,6 @@ Game2048.prototype._moveLeft = function () {
       merged.push(null);
     }
 
-    //if (newRow.length !== row.length)
-    //  boardChanged = true;
-
     newBoard.push(merged);
   });
 
@@ -183,8 +185,8 @@ Game2048.prototype.move = function (direction) {
       case "left":  boardChanged = this._moveLeft();  break;
       case "right": boardChanged = this._moveRight(); break;
     }
-
-    if (boardChanged) {
+    
+    if (boardChanged) {   //pruebo a quitar esto
       this._generateTile();
       this._isGamePlayable();
     }
