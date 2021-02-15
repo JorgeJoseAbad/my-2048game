@@ -11,7 +11,7 @@ $(document).ready(function(){
 });
 */
 
-  
+
   function Game2048() {
 
     this.board = [
@@ -65,15 +65,21 @@ Game2048.prototype._renderBoard = function () {
   console.log('Score: ' + this.score);
 };
 
-
+Game2048.prototype._arrayEquals = function (a, b) {
+  return Array.isArray(a) &&
+    Array.isArray(b) &&
+    a.length === b.length &&
+    a.every((val, index) => val === b[index]);
+}
 
 Game2048.prototype._moveLeft = function () {
+  console.log("en moveLeft");
   var newBoard = [];
   var that = this;
   var boardChanged = false;
 
   ion.sound.play("snap");
-
+  //debugger;
   this.board.forEach (function (row) {
     var newRow = row.filter(function (i) {
       return i !== null;
@@ -87,9 +93,6 @@ Game2048.prototype._moveLeft = function () {
 
         that._updateScore(newRow[i]);
       }
-
-      if (newRow.length !== row.length)  boardChanged = true; //cambio esto aqui
-
     }
 
     var merged = newRow.filter(function (i) {
@@ -100,7 +103,10 @@ Game2048.prototype._moveLeft = function () {
       merged.push(null);
     }
 
+    if (!that._arrayEquals(merged,row)) boardChanged = true;
+
     newBoard.push(merged);
+
   });
 
   this.board = newBoard;
@@ -109,6 +115,7 @@ Game2048.prototype._moveLeft = function () {
 
 
 Game2048.prototype._moveRight = function () {
+  console.log("en _moveRight");
   var newBoard = [];
   var that = this;
   var boardChanged = false;
@@ -120,29 +127,30 @@ Game2048.prototype._moveRight = function () {
       return i !== null;
     });
 
-  for (i=newRow.length - 1; i>0; i--) {
-    if (newRow[i-1] === newRow[i]) {
-      newRow[i]   = newRow[i] * 2;
-      newRow[i-1] = null;
+    for (i=newRow.length - 1; i>0; i--) {
+      if (newRow[i-1] === newRow[i]) {
+        newRow[i]   = newRow[i] * 2;
+        newRow[i-1] = null;
 
-      that._updateScore(newRow[i]);
+        that._updateScore(newRow[i]);
+      }
     }
 
-    if (newRow.length !== row.length) boardChanged = true;
-  }
+    var merged = newRow.filter(function (i) {
+      return i !== null;
+    });
 
-  var merged = newRow.filter(function (i) {
-    return i !== null;
+    while(merged.length < 4) {
+      merged.unshift(null);
+    }
+
+    if (!that._arrayEquals(merged,row))  boardChanged = true;
+
+    newBoard.push(merged);
+
   });
 
-  while(merged.length < 4) {
-    merged.unshift(null);
-  }
-
-  newBoard.push(merged);
-});
-
-this.board = newBoard;
+  this.board = newBoard;
   return boardChanged;
 };
 
