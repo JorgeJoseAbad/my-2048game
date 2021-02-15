@@ -11,7 +11,7 @@ $(document).ready(function(){
 });
 */
 
-
+  
   function Game2048() {
 
     this.board = [
@@ -185,8 +185,8 @@ Game2048.prototype.move = function (direction) {
       case "left":  boardChanged = this._moveLeft();  break;
       case "right": boardChanged = this._moveRight(); break;
     }
-    
-    if (boardChanged) {   //pruebo a quitar esto
+
+    if (boardChanged) {
       this._generateTile();
       this._isGamePlayable();
     }
